@@ -17,3 +17,7 @@ Statični višestranični web spreman za GitHub i Cloudflare Pages.
 
 ## Fotografije
 Svi integrirani vizuali su generirani za ogledni projekt i spremljeni isključivo u AVIF formatu. Ukupna težina paketa slika je približno 200 KB.
+
+
+## English version
+The full English website is located in `/en/`. Croatian remains the default language, and every main page includes an HR/EN switch in desktop and mobile navigation.

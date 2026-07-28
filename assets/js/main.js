@@ -79,7 +79,9 @@
         return;
       }
       status.style.display = 'block';
-      status.textContent = 'Hvala na upitu. Ovo je ogledna verzija forme; prije objave potrebno je unijeti Web3Forms pristupni ključ i stvarnu e-mail adresu vlasnika.';
+      status.textContent = document.documentElement.lang === 'en'
+        ? 'Thank you for your inquiry. This is a demo form; before publication, add the Web3Forms access key and the owner\'s actual email address.'
+        : 'Hvala na upitu. Ovo je ogledna verzija forme; prije objave potrebno je unijeti Web3Forms pristupni ključ i stvarnu e-mail adresu vlasnika.';
       form.reset();
     });
   }
