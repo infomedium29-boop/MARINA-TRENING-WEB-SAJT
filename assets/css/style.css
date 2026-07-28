@@ -370,3 +370,5 @@ p { margin: 0 0 1.25rem; }
   .intro { display:none; }
   .reveal, .mask-reveal { opacity:1; transform:none; clip-path:none; }
 }
+
+.content-grid.single-column{grid-template-columns:minmax(0,860px);justify-content:center}
