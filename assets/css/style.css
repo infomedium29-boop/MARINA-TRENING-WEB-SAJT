@@ -440,3 +440,337 @@ p { margin: 0 0 1.25rem; }
 @media(max-width:1080px){
   .nav-links .language-switch{display:none}
 }
+
+/* --------------------------------------------------------------------------
+   Agency mobile refinement
+   Dedicated rhythm, image crops and interaction states for narrow screens.
+   -------------------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .site-header:not(.scrolled):not(.inner-header) {
+    background: linear-gradient(180deg, rgba(7, 18, 14, .72), rgba(7, 18, 14, 0));
+  }
+
+  .nav-toggle {
+    position: relative;
+    z-index: 1100;
+    display: grid;
+    place-content: center;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+  }
+  .nav-toggle span { margin: 3px auto; transform-origin: center; }
+  .nav-toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-toggle[aria-expanded='true'] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .mobile-menu {
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 108px 28px calc(34px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(circle at 100% 0, rgba(168,95,62,.16), transparent 32%),
+      linear-gradient(160deg, #10231d 0%, #0b1d17 100%);
+  }
+  .mobile-menu-label {
+    display: block;
+    margin: 6px 0 18px;
+    color: #d99473;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .mobile-menu > a:not(.btn) {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+    font-size: clamp(1.48rem, 6.2vw, 2rem);
+    line-height: 1.12;
+  }
+  .mobile-menu > a[aria-current='page']:not(.btn) { color: #e3a486; }
+  .mobile-menu .language-switch-mobile { margin: 24px 0 0; }
+  .mobile-menu .btn {
+    width: 100%;
+    min-height: 54px;
+    margin-top: 22px;
+    padding-inline: 18px;
+    font-size: .7rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --container: min(100% - 36px, 1180px);
+    --radius-md: 18px;
+    --radius-lg: 24px;
+  }
+
+  html { scroll-padding-top: 78px; }
+  body {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+  }
+
+  .section { padding: 64px 0; }
+  .section-sm { padding: 48px 0; }
+  .section-heading { margin-bottom: 34px; }
+  .section-heading.center { text-align: left; }
+  .section-heading.center .eyebrow { justify-content: flex-start; }
+  .eyebrow { margin-bottom: 14px; font-size: .69rem; letter-spacing: .17em; }
+  .eyebrow::before { width: 28px; }
+  h2 { font-size: clamp(2.05rem, 10.7vw, 2.7rem); line-height: 1.05; }
+  h3 { font-size: clamp(1.42rem, 7vw, 1.8rem); }
+  .lead { font-size: 1.04rem; line-height: 1.65; }
+  p { margin-bottom: 1.08rem; }
+  .btn { min-height: 52px; padding: 12px 19px; font-size: .74rem; }
+  .button-row { gap: 11px; }
+
+  .nav-shell { min-height: 74px; }
+  .brand { gap: 10px; }
+  .brand-mark { width: 39px; height: 39px; }
+  .brand-name { font-size: .88rem; letter-spacing: .075em; }
+  .brand-tag { margin-top: 6px; font-size: .44rem; letter-spacing: .27em; }
+
+  .hero {
+    min-height: max(710px, 100svh);
+    align-items: end;
+  }
+  .hero::before {
+    background-image:
+      linear-gradient(180deg, rgba(5,14,11,.12) 0%, rgba(5,14,11,.48) 36%, rgba(5,14,11,.94) 72%, rgba(5,14,11,.98) 100%),
+      url('../images/hero-training-horse-mobile.avif');
+    background-position: center 42%;
+    transform: none;
+  }
+  .hero::after { height: 130px; }
+  .hero-content { padding: 128px 0 48px; }
+  .hero-copy { max-width: 100%; }
+  .hero-kicker { margin-bottom: 18px; gap: 10px; font-size: .67rem; line-height: 1.5; }
+  .hero-kicker::before { width: 38px; }
+  .hero h1 {
+    max-width: 360px;
+    margin-bottom: 22px;
+    font-size: clamp(2.78rem, 12vw, 3.35rem);
+    line-height: 1.02;
+  }
+  .hero p { font-size: .99rem; line-height: 1.58; }
+  .hero .button-row { margin-top: 28px; }
+  .hero .button-row .btn { min-height: 54px; }
+
+  .editorial-intro { gap: 34px; }
+  .editorial-photo {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 150px 150px 18px 18px;
+  }
+  .editorial-photo::before { inset: 14px; }
+  .editorial-photo img { aspect-ratio: 4 / 4.25; object-position: 50% 45%; }
+  .rule { margin: 28px 0; }
+  .statement { font-size: 2.2rem; }
+
+  .service-grid { gap: 16px; }
+  .service-card:nth-child(n) { min-height: 360px; border-radius: 18px; }
+  .service-card::after {
+    background: linear-gradient(to top, rgba(6,18,14,.96) 0%, rgba(6,18,14,.72) 36%, rgba(6,18,14,.05) 76%);
+  }
+  .service-card-content { padding: 24px; }
+  .service-card .index { margin-bottom: 12px; font-size: .65rem; }
+  .service-card h3 { font-size: 1.82rem; line-height: 1.08; }
+  .service-card p { font-size: .91rem; line-height: 1.55; }
+  .service-card:nth-child(1) img { object-position: 45% center; }
+  .service-card:nth-child(2) img { object-position: 47% center; }
+  .service-card:nth-child(3) img { object-position: 52% center; }
+  .service-card:nth-child(4) img { object-position: 47% center; }
+
+  .audience-grid {
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .audience-item { min-height: 0; padding: 23px 21px; }
+  .audience-item strong { font-size: 1.23rem; margin-bottom: 8px; }
+  .audience-item span { font-size: .89rem; }
+
+  .process-grid { gap: 0; }
+  .process-step { padding: 25px 2px; }
+  .process-step::before { margin-bottom: 14px; }
+  .process-step h3 { font-size: 1.48rem; }
+  .process-step p { margin-bottom: 0; }
+
+  .split-feature { min-height: 0; }
+  .split-feature-media { min-height: 330px; }
+  .split-feature-media img { object-position: 46% center; }
+  .split-feature-copy { padding: 48px 18px; }
+  .split-feature-copy h2 { font-size: 2.22rem; }
+  .feature-list { grid-template-columns: 1fr; gap: 10px; margin: 22px 0 28px; }
+  .split-feature-copy .btn { width: 100%; }
+
+  .yoga-feature { gap: 32px; }
+  .yoga-feature img {
+    aspect-ratio: 4 / 3.65;
+    border-radius: 145px 145px 14px 14px;
+    object-position: 50% 48%;
+  }
+  .quote-block { padding-left: 20px; font-size: 1.36rem; }
+
+  .values-row { border-radius: 16px; overflow: hidden; }
+  .value { padding: 20px 10px; font-size: 1rem; }
+
+  .cta-panel { padding: 42px 24px; border-radius: 24px; }
+  .cta-panel::after { right: -250px; top: -205px; }
+  .cta-panel h2 { font-size: 2.22rem; }
+  .cta-panel .btn { width: 100%; }
+
+  .page-hero { min-height: 440px; }
+  .page-hero::before {
+    background-image:
+      linear-gradient(180deg, rgba(5,14,11,.18) 0%, rgba(5,14,11,.46) 42%, rgba(5,14,11,.94) 100%),
+      var(--hero-image, url('../images/mobility-coaching-mobile.avif'));
+    background-position: center;
+  }
+  .page-hero[data-hero='functional']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.15),rgba(5,14,11,.93)), url('../images/functional-strength-mobile.avif');
+  }
+  .page-hero[data-hero='equestrian']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.12),rgba(5,14,11,.91)), url('../images/equestrian-rider-mobile.avif');
+  }
+  .page-hero[data-hero='yoga']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.12),rgba(5,14,11,.9)), url('../images/ashtanga-yoga-mobile.avif');
+  }
+  .page-hero[data-hero='mobility']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.16),rgba(5,14,11,.93)), url('../images/mobility-coaching-mobile.avif');
+  }
+  .page-hero[data-hero='coach']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.16),rgba(5,14,11,.93)), url('../images/coach-mobility-mobile.avif');
+  }
+  .page-hero[data-hero='online']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.14),rgba(5,14,11,.92)), url('../images/online-coaching-mobile.avif');
+  }
+  .page-hero[data-hero='plan']::before {
+    background-image: linear-gradient(180deg,rgba(5,14,11,.14),rgba(5,14,11,.93)), url('../images/plan-training-mobile.avif');
+  }
+  .page-hero-content { padding: 146px 0 42px; }
+  .page-hero h1 {
+    margin-bottom: 19px;
+    font-size: clamp(2.55rem, 11.8vw, 3.12rem);
+    line-height: 1.03;
+  }
+  .page-hero p { font-size: 1rem; line-height: 1.58; }
+  .page-article .page-hero { min-height: 465px; }
+
+  .content-grid { gap: 34px; }
+  .prose h2 { margin-top: 42px; font-size: 2rem; }
+  .prose h2:first-child { margin-top: 0; }
+  .prose h3 { margin-top: 30px; }
+  .prose ul { padding-left: 18px; }
+  .prose .callout { margin: 30px 0; padding: 22px; border-radius: 0 14px 14px 0; }
+  .side-card { position: static; top: auto; padding: 27px 24px; border-radius: 18px; }
+
+  .program-list { gap: 16px; border: 0; background: transparent; }
+  .program-row {
+    gap: 17px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 12px 34px rgba(17,35,29,.055);
+  }
+  .program-row img { width: 100%; aspect-ratio: 1.62; border-radius: 12px; }
+  .program-row h3 { font-size: 1.52rem; }
+  .program-row .btn-link { margin-top: 3px; }
+
+  .stat-band { border-radius: 18px; overflow: hidden; }
+  .stat { padding: 28px 24px; }
+
+  .tag-row {
+    width: calc(100% + 18px);
+    margin-right: -18px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 2px 18px 8px 0;
+    margin-bottom: 28px;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+  .tag-row::-webkit-scrollbar { display: none; }
+  .tag { flex: 0 0 auto; scroll-snap-align: start; }
+  .blog-grid { gap: 18px; }
+  .blog-card { border-radius: 18px; }
+  .blog-card img { aspect-ratio: 1.55; }
+  .blog-card-body { padding: 22px; }
+  .blog-card h2, .blog-card h3 { font-size: 1.52rem; }
+  .article-meta { gap: 9px 16px; margin-bottom: 24px; font-size: .82rem; }
+  .article-image { aspect-ratio: 4 / 3; margin: 24px 0 38px; border-radius: 16px; }
+
+  .faq-question { padding: 22px 0; font-size: 1.2rem; line-height: 1.25; }
+  .faq-answer-inner { padding: 0 0 24px; }
+
+  .contact-grid { gap: 28px; }
+  .contact-aside { padding: 28px 24px; border-radius: 20px; }
+  .contact-list { margin-top: 26px; }
+  .contact-form { gap: 16px; }
+  .field { gap: 6px; }
+  .field input, .field select, .field textarea {
+    min-height: 54px;
+    padding: 14px;
+    border-radius: 11px;
+    font-size: 16px;
+  }
+  .field textarea { min-height: 142px; }
+  .contact-form > .btn { width: 100%; }
+
+  main > .legal:first-child { padding-top: 132px; }
+  .legal h1 { font-size: 2.7rem; }
+  .legal h2 { margin-top: 36px; font-size: 1.75rem; }
+
+  .site-footer { padding: 56px 0 24px; }
+  .footer-grid { gap: 30px 22px; }
+  .footer-brand p { font-size: .91rem; }
+  .footer-title { margin-bottom: 13px; }
+  .footer-links li { margin: 8px 0; }
+  .footer-links a { font-size: .9rem; }
+  .footer-bottom { margin-top: 38px; padding-top: 20px; gap: 10px; font-size: .71rem; line-height: 1.5; }
+
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    gap: 16px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+  .cookie-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cookie-actions .btn { width: 100%; min-width: 0; padding-inline: 10px; }
+  .cookie-actions .btn:last-child { grid-column: 1 / -1; }
+
+  .mobile-sticky {
+    min-height: calc(62px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform .28s ease, opacity .28s ease;
+  }
+  .mobile-sticky.visible { transform: translateY(0); opacity: 1; }
+  body.menu-open .mobile-sticky { transform: translateY(110%); opacity: 0; pointer-events: none; }
+  .mobile-sticky a { min-height: 62px; font-size: .68rem; letter-spacing: .07em; }
+  .sticky-icon { width: 18px; height: 18px; flex: 0 0 auto; }
+}
+
+@media (max-width: 420px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 18px; }
+  .footer-grid > div:last-child { grid-column: 1 / -1; }
+  .hero h1 { font-size: clamp(2.65rem, 12.6vw, 3.18rem); }
+  .page-hero h1 { font-size: clamp(2.42rem, 11.8vw, 2.95rem); }
+}
+
+@media (max-width: 980px) {
+  html, body { max-width: 100%; overflow-x: clip; }
+  .editorial-intro > *, .yoga-feature > *, .split-feature > *, .content-grid > * { min-width: 0; }
+  .mobile-menu { left: -1px; right: -1px; }
+}

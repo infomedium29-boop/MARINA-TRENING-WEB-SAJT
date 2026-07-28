@@ -15,22 +15,34 @@
   }
 
   const header = qs('.site-header');
-  const setHeader = () => header?.classList.toggle('scrolled', scrollY > 20);
-  setHeader();
-  addEventListener('scroll', setHeader, { passive: true });
+  const mobileSticky = qs('.mobile-sticky');
+  const setScrollUi = () => {
+    header?.classList.toggle('scrolled', scrollY > 20);
+    const menuOpen = document.body.classList.contains('menu-open');
+    mobileSticky?.classList.toggle('visible', scrollY > 360 && !menuOpen);
+  };
+  setScrollUi();
+  addEventListener('scroll', setScrollUi, { passive: true });
 
   const toggle = qs('.nav-toggle');
   const mobileMenu = qs('.mobile-menu');
+  const menuLabel = document.documentElement.lang === 'en'
+    ? { open: 'Open menu', close: 'Close menu' }
+    : { open: 'Otvori izbornik', close: 'Zatvori izbornik' };
   const closeMenu = () => {
     mobileMenu?.classList.remove('open');
     document.body.classList.remove('menu-open');
     toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', menuLabel.open);
+    setScrollUi();
   };
   toggle?.addEventListener('click', () => {
     const open = !mobileMenu.classList.contains('open');
     mobileMenu.classList.toggle('open', open);
     document.body.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? menuLabel.close : menuLabel.open);
+    setScrollUi();
   });
   qsa('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
   addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
