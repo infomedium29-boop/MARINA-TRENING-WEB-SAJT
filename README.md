@@ -1,4 +1,4 @@
-# Equilibrium Performance — ogledni web projekt
+# Moje tijelo-moj saveznik — ogledni web projekt
 
 Statični višestranični web spreman za GitHub i Cloudflare Pages.
 
