@@ -29,3 +29,7 @@ Canonical, Open Graph, strukturirani podaci, `robots.txt` i `sitemap.xml` korist
 ## Fotografije i diplome
 
 Fotografije i diplome u projektu optimizirane su u AVIF formatu. Diplome su prikazane na stranici **O pristupu / About** i mogu se otvoriti u većem prikazu.
+
+
+## Kontakt forma
+Kontakt forma koristi Web3Forms i šalje upite na verificiranu adresu povezanu s ugrađenim Access Keyem.

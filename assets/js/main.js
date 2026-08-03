@@ -123,7 +123,7 @@
       submitButton.textContent = labels.sending;
 
       try {
-        const response = await fetch('/api/contact', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           body: new FormData(form),
           headers: { Accept: 'application/json' }
