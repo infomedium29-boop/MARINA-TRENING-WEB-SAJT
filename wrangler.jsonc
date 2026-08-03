@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "marina-trening-web",
+  "pages_build_output_dir": ".",
+  "compatibility_date": "2026-08-03",
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "destination_address": "marinamagas45@gmail.com",
+      "allowed_sender_addresses": [
+        "upiti@mojetijelo-mojsaveznik.com"
+      ]
+    }
+  ]
+}

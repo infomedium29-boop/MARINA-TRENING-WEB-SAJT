@@ -1,23 +1,31 @@
-# Moje tijelo-moj saveznik — ogledni web projekt
+# Moje tijelo-moj saveznik — web projekt
 
-Statični višestranični web spreman za GitHub i Cloudflare Pages.
+Višestranični HR/EN web spreman za GitHub i Cloudflare Pages.
 
-## Brza objava
-1. Raspakirajte ZIP i prenesite sav sadržaj u GitHub repozitorij.
-2. U Cloudflare Pages odaberite taj repozitorij.
-3. Framework preset: **None**. Build command ostavite prazno. Build output directory: `/`.
-4. Nakon objave zamijenite `https://equilibrium-performance.pages.dev/` stvarnom domenom u canonical i OG oznakama, `robots.txt` i `sitemap.xml`.
+## Objava
 
-## Obavezno prije produkcije
-- Zamijeniti naziv brenda, logo, kontakt podatke, OIB, adresu i lokaciju.
-- Dodati stvarne kvalifikacije i fotografije trenera.
-- U `kontakt.html` zamijeniti `UNESITE_WEB3FORMS_ACCESS_KEY` stvarnim Web3Forms ključem te ukloniti demo presretanje forme u `assets/js/main.js` ako se želi stvarno slanje.
-- Pravno provjeriti Politiku privatnosti i Politiku kolačića.
-- Zamijeniti demo Pages URL stvarnom domenom.
+1. Raspakirajte ZIP.
+2. Prenesite **sav sadržaj mape `equilibrium-performance`** u korijen postojećeg GitHub repozitorija.
+3. Ne uklanjajte mapu `functions` ni datoteku `wrangler.jsonc`.
+4. Cloudflare Pages će nakon GitHub commita automatski pokrenuti novi deployment.
+5. Framework preset ostaje **None**, a build command prazan.
 
-## Fotografije
-Svi integrirani vizuali su generirani za ogledni projekt i spremljeni isključivo u AVIF formatu. Ukupna težina paketa slika je približno 200 KB.
+## Kontakt forma
 
+Kontakt forma šalje upite direktno na verificiranu adresu `marinamagas45@gmail.com` preko Cloudflare Pages Functiona i Cloudflare Email Servicea.
 
-## English version
-The full English website is located in `/en/`. Croatian remains the default language, and every main page includes an HR/EN switch in desktop and mobile navigation.
+- `functions/api/contact.js` — obrada forme, validacija i slanje poruke
+- `wrangler.jsonc` — `CONTACT_EMAIL` binding ograničen na verificirani Gmail i pošiljatelja s domene
+- hrvatska i engleska forma šalju na `/api/contact`
+- odgovor na primljeni e-mail automatski ide osobi koja je ispunila formu (`Reply-To`)
+- uključena je osnovna zaštita od spama i validacija podataka
+
+## Domena i SEO
+
+Canonical, Open Graph, strukturirani podaci, `robots.txt` i `sitemap.xml` koriste produkcijsku domenu:
+
+`https://mojetijelo-mojsaveznik.com`
+
+## Fotografije i diplome
+
+Fotografije i diplome u projektu optimizirane su u AVIF formatu. Diplome su prikazane na stranici **O pristupu / About** i mogu se otvoriti u većem prikazu.

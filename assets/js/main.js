@@ -83,18 +83,67 @@
 
   const form = qs('#contact-form');
   if (form) {
+    const status = qs('.form-status', form);
+    const submitButton = qs('button[type="submit"]', form);
+    const language = document.documentElement.lang === 'en' ? 'en' : 'hr';
+    const labels = language === 'en'
+      ? {
+          sending: 'Sending…',
+          submit: 'Send an inquiry',
+          success: 'Thank you. Your inquiry has been sent successfully.',
+          error: 'The inquiry could not be sent. Please try again or contact us by e-mail.'
+        }
+      : {
+          sending: 'Šaljem…',
+          submit: 'Pošaljite upit',
+          success: 'Hvala. Vaš upit je uspješno poslan.',
+          error: 'Upit nije moguće poslati. Pokušajte ponovno ili nam se javite e-mailom.'
+        };
+
+    const markStart = () => {
+      const started = qs('[name="form_started"]', form);
+      const source = qs('[name="source_url"]', form);
+      if (started) started.value = String(Date.now());
+      if (source) source.value = location.href;
+    };
+    markStart();
+
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const status = qs('.form-status', form);
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
+
+      status.className = 'form-status';
       status.style.display = 'block';
-      status.textContent = document.documentElement.lang === 'en'
-        ? 'Thank you for your inquiry. This is a demo form; before publication, add the Web3Forms access key and the owner\'s actual email address.'
-        : 'Hvala na upitu. Ovo je ogledna verzija forme; prije objave potrebno je unijeti Web3Forms pristupni ključ i stvarnu e-mail adresu vlasnika.';
-      form.reset();
+      status.textContent = labels.sending;
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+      submitButton.textContent = labels.sending;
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.success) throw new Error(result.error || 'Send failed');
+
+        status.classList.add('is-success');
+        status.textContent = labels.success;
+        form.reset();
+        markStart();
+      } catch (error) {
+        console.error('Contact form error:', error);
+        status.classList.add('is-error');
+        status.textContent = labels.error;
+      } finally {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-busy');
+        submitButton.textContent = labels.submit;
+      }
     });
   }
 

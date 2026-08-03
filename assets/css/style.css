@@ -265,6 +265,10 @@ p { margin: 0 0 1.25rem; }
 .form-consent { grid-column:1/-1; display:flex; gap:10px; align-items:flex-start; font-size:.8rem; color:var(--muted); }
 .form-consent input { margin-top:5px; }
 .form-status { grid-column:1/-1; display:none; padding:14px; border-radius:8px; background:#e9f1eb; color:#28503d; }
+.form-status.is-success { background:#e9f1eb; color:#28503d; border:1px solid rgba(40,80,61,.16); }
+.form-status.is-error { background:#f8e9e5; color:#7a3428; border:1px solid rgba(122,52,40,.16); }
+.field-hp { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; }
+.contact-form .btn[disabled] { opacity:.68; cursor:wait; transform:none; }
 
 .legal h1 { font-size:clamp(2.7rem,6vw,4.6rem); }
 .legal h2 { font-size:2rem; margin-top:44px; }
