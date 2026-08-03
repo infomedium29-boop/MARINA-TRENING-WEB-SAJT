@@ -6,10 +6,7 @@
   "send_email": [
     {
       "name": "CONTACT_EMAIL",
-      "destination_address": "marinamagas45@gmail.com",
-      "allowed_sender_addresses": [
-        "upiti@mojetijelo-mojsaveznik.com"
-      ]
+      "destination_address": "marinamagas45@gmail.com"
     }
   ]
 }
